@@ -20,7 +20,7 @@ class WeatherDetails extends React.Component {
   renderErrorState() {
     return (<div className="details">
       <div className="error">Error occurred during data fetch. Try to
-        <button onClick={this.props.fetchDayForecast(this.props.selectedDt)}>reload</button>
+        <button onClick={this.props.fetchDayForecast.bind(null, this.props.selectedDt)}>reload</button>
       </div>
     </div>)
   }
@@ -67,7 +67,7 @@ class WeatherDetails extends React.Component {
   }
 
   render() {
-    return (this.props.selectedDt == null ? "" : this.props.forecast.loading ? this.renderLoadingState() : this.props.forecast.error ? this.renderErrorState() : this.renderWeatherState());
+    return (!this.props.forecast ? null : this.props.forecast.loading ? this.renderLoadingState() : this.props.forecast.error ? this.renderErrorState() : this.renderWeatherState());
   }
 }
 
